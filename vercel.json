@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "api/slack/events.js": {
+      "maxDuration": 10
+    },
+    "api/cron/daily-standup.js": {
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "SLACK_BOT_TOKEN": "@slack_bot_token",
+    "SLACK_SIGNING_SECRET": "@slack_signing_secret",
+    "SLACK_CHANNEL_ID": "@slack_channel_id",
+    "CRON_SECRET": "@cron_secret"
+  }
+}
