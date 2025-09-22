@@ -3,7 +3,11 @@
     "allow": [
       "WebFetch(domain:docs.slack.dev)",
       "Bash(npm install)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "Bash(npm ls:*)",
+      "Bash(node:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []

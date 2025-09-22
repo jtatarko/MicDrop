@@ -2,7 +2,7 @@
   "name": "micdrop",
   "version": "1.0.0",
   "description": "Serverless Slack app for automatic standup host rotation",
-  "main": "src/index.js",
+  "main": "api/slack/events.js",
   "scripts": {
     "dev": "vercel dev",
     "build": "vercel build",

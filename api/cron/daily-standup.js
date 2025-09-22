@@ -2,7 +2,7 @@ const { getTeamData, updateTeamData } = require('../../lib/database');
 const { isUserUnavailable, sendMessage } = require('../../lib/slack');
 const { createStandupNotificationMessage, createAllUnavailableMessage } = require('../../lib/templates/messageTemplates');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

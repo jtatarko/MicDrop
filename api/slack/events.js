@@ -4,8 +4,9 @@ const { addMemberHandler } = require('../../lib/handlers/addMemberHandler');
 const { removeMemberHandler } = require('../../lib/handlers/removeMemberHandler');
 const { nextHostHandler } = require('../../lib/handlers/nextHostHandler');
 const { interactiveHandler } = require('../../lib/handlers/interactiveHandler');
+const { createMockClient } = require('../../lib/slackClient');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -59,16 +60,17 @@ export default async function handler(req, res) {
     if (body.type === 'block_actions') {
       const action = body.actions[0];
       const ack = () => res.status(200).json({});
+      const client = createMockClient(res);
 
       switch (action.action_id) {
         case 'add_member_button':
-          await interactiveHandler.addMemberButton({ body, ack, client: { views: { open: async (view) => res.status(200).json(view) } } });
+          await interactiveHandler.addMemberButton({ body, ack, client });
           break;
         case 'remove_member_button':
-          await interactiveHandler.removeMemberButton({ body, ack, client: { views: { open: async (view) => res.status(200).json(view) } } });
+          await interactiveHandler.removeMemberButton({ body, ack, client });
           break;
         case 'view_next_host_button':
-          await interactiveHandler.viewNextHostButton({ body, ack, respond: (msg) => res.status(200).json(msg) });
+          await interactiveHandler.viewNextHostButton({ body, ack, client });
           break;
         default:
           res.status(200).json({});
@@ -79,13 +81,14 @@ export default async function handler(req, res) {
     // Handle modal submissions
     if (body.type === 'view_submission') {
       const ack = () => res.status(200).json({});
+      const client = createMockClient(res);
 
       switch (body.view.callback_id) {
         case 'add_member_modal':
-          await interactiveHandler.addMemberSubmission({ body, ack, client: { chat: { postMessage: async () => {} } } });
+          await interactiveHandler.addMemberSubmission({ body, ack, client });
           break;
         case 'remove_member_modal':
-          await interactiveHandler.removeMemberSubmission({ body, ack, client: { chat: { postMessage: async () => {} } } });
+          await interactiveHandler.removeMemberSubmission({ body, ack, client });
           break;
         default:
           res.status(200).json({});
