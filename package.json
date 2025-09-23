@@ -5,7 +5,6 @@
   "main": "api/slack/events.js",
   "scripts": {
     "dev": "vercel dev",
-    "build": "vercel build",
     "deploy": "vercel --prod",
     "test": "jest",
     "lint": "eslint lib/ api/"
