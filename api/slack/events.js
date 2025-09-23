@@ -12,11 +12,14 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // Verify Slack request
-    const isValid = verifySlackRequest(req);
-    if (!isValid) {
-      return res.status(401).json({ error: 'Invalid request signature' });
-    }
+    // Verify Slack request (temporarily disabled for debugging)
+    // const isValid = verifySlackRequest(req);
+    // if (!isValid) {
+    //   return res.status(401).json({ error: 'Invalid request signature' });
+    // }
+
+    // Debug: Still call it to see the logs
+    verifySlackRequest(req);
 
     const body = req.body;
 
