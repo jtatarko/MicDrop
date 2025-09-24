@@ -10,7 +10,13 @@
       "Bash(tree:*)",
       "Bash(vercel link:*)",
       "Bash(npm install:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh workflow:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(vercel ls:*)"
     ],
     "deny": [],
     "ask": []
